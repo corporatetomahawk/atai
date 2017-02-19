@@ -75,8 +75,10 @@ INSTALLED_APPS = (
     'crispy_forms',
     'easy_thumbnails',
 
-    'profiles',
     'accounts',
+    'portfolios',
+    'profiles',
+    'records',
 
 )
 
