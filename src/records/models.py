@@ -1,4 +1,7 @@
 from django.db import models
+from django.utils import timezone
+from django.conf import settings
+from django.utils.functional import cached_property
 
 class BaseRecord(models.Model):
     created_at = models.DateTimeField(default=timezone.now)
@@ -13,4 +16,4 @@ class StockRecord(BaseRecord):
     EPIC_code = models.CharField(max_length=4)
 
 class FundRecord(BaseRecord):
-    SEDOL_code = models.IntegerField(max_length=7)
+    SEDOL_code = models.IntegerField()

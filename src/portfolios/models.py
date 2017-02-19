@@ -1,4 +1,7 @@
 from django.db import models
+from django.utils import timezone
+from django.conf import settings
+from django.utils.functional import cached_property
 
 
 class Portfolio(models.Model):
