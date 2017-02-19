@@ -1,0 +1,13 @@
+language: python
+python:
+  - "2.7"
+  - "3.4"
+install:
+  - pip install -r requirements.txt
+  - cd ..
+  - django-admin.py startproject --template=./edge --extension=py,md,html,env atai
+  - cd atai/src
+  - cp atai/settings/local.sample.env atai/settings/local.env
+  - python manage.py migrate
+script:
+  - python manage.py test profiles
