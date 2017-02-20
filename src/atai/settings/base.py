@@ -77,7 +77,8 @@ INSTALLED_APPS = (
     'crispy_forms',
     'easy_thumbnails',
     'django_tables2',
-
+    
+    'atai',
     'accounts',
     'portfolios',
     'profiles',
