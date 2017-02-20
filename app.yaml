@@ -1,11 +1,11 @@
 # [START runtime]
 runtime: python
 env: flex
-entrypoint: gunicorn -b :$PORT atai.wsgi
+entrypoint: gunicorn -b :$PORT atai:wsgi
 
-# beta_settings:
-#    cloud_sql_instances: 
-#    connectionName: atai-0:us-east1:atai-0
+beta_settings:
+   cloud_sql_instances: 
+   connectionName: /cloudsql/atai-0:us-east1:atai-0
 
 libraries:
 - name: MySQLdb
@@ -13,6 +13,7 @@ libraries:
 
 env_variables:
   SECRET_KEY: 'm3qggt^ki^lutv%pnzxw2&hec9#qpy=uk=zu++%(2^!4&f8fo0'
+  GAE_INSTANCE: /cloudsql/atai-0:us-east1:atai-0
   CLOUDSQL_CONNECTION_NAME: atai-0:us-east1:atai-0
   CLOUDSQL_USER: root
   LOUDSQL_PASSWORD: root

@@ -9,9 +9,11 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 """
 from django.core.urlresolvers import reverse_lazy
 from os.path import dirname, join, exists
+import os
 
+DEBUG = True
 # Build paths inside the project like this: join(BASE_DIR, "directory")
-BASE_DIR = dirname(dirname(__file__))
+BASE_DIR = dirname(__file__)
 # STATIC_ROOT = join(BASE_DIR, 'collectstatic')
 STATICFILES_DIRS = [join(BASE_DIR, 'static')]
 MEDIA_ROOT = join(BASE_DIR, 'media')
@@ -49,7 +51,7 @@ env = environ.Env()
 
 # Ideally move env file should be outside the git repo
 # i.e. BASE_DIR.parent.parent
-env_file = join(dirname(__file__), 'local.env')
+env_file = join(dirname(__file__), '.env')
 if exists(env_file):
     environ.Env.read_env(str(env_file))
 
@@ -108,30 +110,25 @@ WSGI_APPLICATION = 'atai.wsgi.application'
 #     'default': env.db(),
 # }
 
-import os
-if os.getenv('SERVER', '').startswith('Google App Engine'):
-    # Running on production App Engine, so use a Google Cloud SQL database.
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'HOST': '/cloudsql/your-project-id:your-instance-name',
-            'NAME': 'django_test',
-            'USER': 'root',
-        }
+# [START dbconfig]
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'atai',
+        'USER': 'root',
+        'PASSWORD': 'root',
     }
-elif os.getenv('SETTINGS_MODE') == 'prod':
-    # Running in development, but want to access the Google Cloud SQL instance
-    # in production.
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'HOST': 'your-instance-ip-address',
-            'NAME': 'django_test',
-            'USER': 'root',
-            'PASSWORD': 'password',
-        }
-    }
+}
+# In the flexible environment, you connect to CloudSQL using a unix socket.
+# Locally, you can use the CloudSQL proxy to proxy a localhost connection
+# to the instance
+DATABASES['default']['HOST'] = os.getenv('GAE_INSTANCE')
+if os.getenv('GAE_INSTANCE'):
+    pass
 else:
+    DATABASES['default']['HOST'] = '127.0.0.1'
+# [END dbconfig]
+
     # Running in development, so use a local MySQL database.
     DATABASES = {
         'default': env.db(),
