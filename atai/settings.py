@@ -102,11 +102,40 @@ WSGI_APPLICATION = 'atai.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
-DATABASES = {
-    # Raises ImproperlyConfigured exception if DATABASE_URL not in
-    # os.environ
-    'default': env.db(),
-}
+# DATABASES = {
+#     # Raises ImproperlyConfigured exception if DATABASE_URL not in
+#     # os.environ
+#     'default': env.db(),
+# }
+
+import os
+if os.getenv('SERVER_SOFTWARE', '').startswith('Google App Engine'):
+    # Running on production App Engine, so use a Google Cloud SQL database.
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'HOST': '/cloudsql/your-project-id:your-instance-name',
+            'NAME': 'django_test',
+            'USER': 'root',
+        }
+    }
+elif os.getenv('SETTINGS_MODE') == 'prod':
+    # Running in development, but want to access the Google Cloud SQL instance
+    # in production.
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'HOST': 'your-instance-ip-address',
+            'NAME': 'django_test',
+            'USER': 'root',
+            'PASSWORD': 'password',
+        }
+    }
+else:
+    # Running in development, so use a local MySQL database.
+    DATABASES = {
+        'default': env.db(),
+    }
 
 # Internationalization
 # https://docs.djangoproject.com/en/dev/topics/i18n/

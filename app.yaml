@@ -4,10 +4,19 @@ env: flex
 entrypoint: gunicorn -b :$PORT atai.wsgi
 
 # beta_settings:
-#    cloud_sql_instances: <your-cloudsql-connection-string>
+#    cloud_sql_instances: 
+#    connectionName: atai-0:us-east1:atai-0
 
 env_variables:
-  SECRET_KEY=m3qggt^ki^lutv%pnzxw2&hec9#qpy=uk=zu++%(2^!4&f8fo0
+  SECRET_KEY: 'm3qggt^ki^lutv%pnzxw2&hec9#qpy=uk=zu++%(2^!4&f8fo0'
+  CLOUDSQL_CONNECTION_NAME: atai-0:us-east1:atai-0
+  CLOUDSQL_USER: root
+  LOUDSQL_PASSWORD: root
+  SERVER_SOFTWARE: Google App Engine
+
+libraries:
+  name: MySQLdb
+  version: "latest"
 
 runtime_config:
   python_version: 3
