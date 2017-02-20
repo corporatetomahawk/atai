@@ -12,11 +12,7 @@ env_variables:
   CLOUDSQL_CONNECTION_NAME: atai-0:us-east1:atai-0
   CLOUDSQL_USER: root
   LOUDSQL_PASSWORD: root
-  SERVER_SOFTWARE: Google App Engine
-
-libraries:
-  name: MySQLdb
-  version: "latest"
+  SERVER: Google App Engine
 
 runtime_config:
   python_version: 3
