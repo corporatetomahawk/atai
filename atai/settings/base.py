@@ -11,7 +11,7 @@ from django.core.urlresolvers import reverse_lazy
 from os.path import dirname, join, exists
 
 # Build paths inside the project like this: join(BASE_DIR, "directory")
-BASE_DIR = dirname(dirname(dirname(__file__)))
+BASE_DIR = dirname(dirname(__file__))
 # STATIC_ROOT = join(BASE_DIR, 'collectstatic')
 STATICFILES_DIRS = [join(BASE_DIR, 'static')]
 MEDIA_ROOT = join(BASE_DIR, 'media')
@@ -95,9 +95,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'atai.urls'
+ROOT_URLCONF = 'urls'
 
-WSGI_APPLICATION = 'atai.wsgi.application'
+WSGI_APPLICATION = 'wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases

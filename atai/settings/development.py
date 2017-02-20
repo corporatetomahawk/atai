@@ -32,7 +32,7 @@ INTERNAL_IPS = [
 ]
 
 # Log everything to the logs directory at the top
-LOGFILE_ROOT = join(dirname(BASE_DIR), 'logs')
+# LOGFILE_ROOT = join(dirname(BASE_DIR), 'logs')
 
 # Reset logging
 # (see http://www.caktusgroup.com/blog/2015/01/27/Django-Logging-Configuration-logging_config-default-settings-logger/)
@@ -51,18 +51,6 @@ LOGGING = {
         },
     },
     'handlers': {
-        'django_log_file': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': join(LOGFILE_ROOT, 'django.log'),
-            'formatter': 'verbose'
-        },
-        'proj_log_file': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': join(LOGFILE_ROOT, 'project.log'),
-            'formatter': 'verbose'
-        },
         'console': {
             'level': 'DEBUG',
             'class': 'logging.StreamHandler',
@@ -70,15 +58,7 @@ LOGGING = {
         }
     },
     'loggers': {
-        'django': {
-            'handlers': ['django_log_file'],
-            'propagate': True,
-            'level': 'DEBUG',
-        },
-        'project': {
-            'handlers': ['proj_log_file'],
-            'level': 'DEBUG',
-        },
+
     }
 }
 

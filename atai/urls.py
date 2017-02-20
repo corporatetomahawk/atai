@@ -4,7 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 import profiles.urls
 import accounts.urls
-from . import views
+import views
 
 urlpatterns = [
     url(r'^$', views.HomePage.as_view(), name='home'),
