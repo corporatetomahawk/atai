@@ -1,7 +1,7 @@
 # [START runtime]
 runtime: python
 env: flex
-entrypoint: gunicorn -b :$PORT atai:wsgi
+entrypoint: gunicorn -b :$PORT atai.wsgi
 
 beta_settings:
    cloud_sql_instances: atai-0:us-east1:atai-0
