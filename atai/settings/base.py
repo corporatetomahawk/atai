@@ -79,8 +79,8 @@ INSTALLED_APPS = (
     'django_tables2',
 
     'accounts',
-    'portfolios',
     'profiles',
+    'portfolios',
     'records',
 
 )
