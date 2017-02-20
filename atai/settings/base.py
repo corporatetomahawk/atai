@@ -78,10 +78,10 @@ INSTALLED_APPS = (
     'easy_thumbnails',
     'django_tables2',
 
-    'accounts',
+    'main.accounts',
     'profiles',
-    'portfolios',
-    'records',
+    'main.portfolios',
+    'main.records',
 
 )
 
@@ -95,9 +95,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'urls'
+ROOT_URLCONF = 'atai.urls'
 
-WSGI_APPLICATION = 'wsgi.application'
+WSGI_APPLICATION = 'atai.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases

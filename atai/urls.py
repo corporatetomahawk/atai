@@ -3,16 +3,16 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 import profiles.urls
-import accounts.urls
-import views
+import main.accounts.urls
+import atai.views
 
 urlpatterns = [
-    url(r'^$', views.HomePage.as_view(), name='home'),
-    url(r'^about/$', views.AboutPage.as_view(), name='about'),
+    url(r'^$', atai.views.HomePage.as_view(), name='home'),
+    url(r'^about/$', atai.views.AboutPage.as_view(), name='about'),
     url(r'^users/', include(profiles.urls, namespace='profiles')),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^portfolios/', include('portfolios.urls')),
-    url(r'^', include(accounts.urls, namespace='accounts')),
+    url(r'^portfolios/', include('main.portfolios.urls')),
+    url(r'^', include(main.accounts.urls, namespace='accounts')),
 ]
 
 # User-uploaded files like profile pics need to be served in development
